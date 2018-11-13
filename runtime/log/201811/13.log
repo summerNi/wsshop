@@ -396,6 +396,7 @@
 [ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `pet_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1541865600 AND `create_time` <= 1541952000 ) LIMIT 1 [ RunTime:0.001000s ]
 [ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `pet_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1541952000 AND `create_time` <= 1542038400 ) LIMIT 1 [ RunTime:0.001000s ]
 [ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `pet_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1542038400 AND `create_time` <= 1542124800 ) LIMIT 1 [ RunTime:0.000000s ]
+<<<<<<< HEAD
 ---------------------------------------------------------------
 [ 2018-11-13T11:44:20+08:00 ] 127.0.0.1 GET /admin/admin/index.shtml
 [ info ] www.pet.local/admin/admin/index.shtml [运行时间：0.176010s][吞吐率：5.68req/s] [内存消耗：4,247.75kb] [文件加载：64]
@@ -631,3 +632,5 @@
 [ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=pethome;charset=utf8
 [ sql ] [ SQL ] SHOW COLUMNS FROM `pet_urlconfig` [ RunTime:0.002000s ]
 [ sql ] [ SQL ] SELECT `aliases`,`url` FROM `pet_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+=======
+>>>>>>> 9796d7e536ee007fa374e4edc8e36bd87556d9f5

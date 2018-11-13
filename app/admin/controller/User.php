@@ -18,7 +18,7 @@ class Article extends Permissions
 {
     public function index()
     {
-      
+
     }
 
 
