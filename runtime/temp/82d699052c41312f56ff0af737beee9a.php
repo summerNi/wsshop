@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:61:"D:\wamp64\www\pethome\public/../app/admin\view\goods\add.html";i:1542092812;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +7,9 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
-  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
-  <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+  <link rel="stylesheet" href="/static/public/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="/static/public/font-awesome/css/font-awesome.min.css" media="all" />
+  <link rel="stylesheet" href="/static/admin/css/admin.css"  media="all">
 </head>
 <body style="padding:10px;">
   <div class="tplay-body-div">
@@ -79,12 +80,12 @@
 
     </form>
 
-    <script src="__PUBLIC__/layui/layui.js"></script>
-    <script src="__PUBLIC__/jquery/jquery.min.js"></script>
+    <script src="/static/public/layui/layui.js"></script>
+    <script src="/static/public/jquery/jquery.min.js"></script>
     <!-- <script>
         var message;
         layui.config({
-            base: '__JS__/',
+            base: '/static/admin/js/',
             version: '1.0.1'
         }).use(['app', 'message'], function() {
             var app = layui.app,
@@ -104,7 +105,7 @@
       //执行实例
       var uploadInst = upload.render({
         elem: '#thumb' //绑定元素
-        ,url: "{:url('common/goodsImgUpload')}" //上传接口
+        ,url: "<?php echo url('common/goodsImgUpload'); ?>" //上传接口
         ,done: function(res){
           //上传完毕回调
           if(res.code == 2) {
@@ -131,9 +132,9 @@
 
     </script>
     <!-- 配置文件 -->
-    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/static/public/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="/static/public/ueditor/ueditor.all.js"></script>
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
         var ue = UE.getEditor('container');
@@ -146,7 +147,7 @@
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
-                      url:"{:url('admin/goods/add')}",
+                      url:"<?php echo url('admin/goods/add'); ?>",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,

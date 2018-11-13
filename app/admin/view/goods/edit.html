@@ -15,30 +15,30 @@
     <div style="margin-top: 20px;">
     </div>
     <form class="layui-form" id="admin">
-
+      <input />
       <div class="layui-form-item">
         <label class="layui-form-label">商品名称</label>
         <div class="layui-input-inline">
-          <input name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" >
+          <input name="name" lay-verify="required" placeholder="请输入商品名称" value="{$goods.name}" autocomplete="off" class="layui-input" type="text" >
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">商品副名称</label>
         <div class="layui-input-inline">
-          <input name="sub_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" >
+          <input name="sub_name" lay-verify="required" placeholder="请输入商品副标题" value="{$goods.sub_name}" autocomplete="off" class="layui-input" type="text" >
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">价格</label>
         <div class="layui-input-inline">
-          <input name="price" lay-verify="required" placeholder="请输入价格" autocomplete="off" class="layui-input" type="text" >
+          <input name="price" lay-verify="required" placeholder="请输入价格" value="{$goods.price}" autocomplete="off" class="layui-input" type="text" >
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">市场价</label>
         <div class="layui-input-inline">
-          <input name="market_price"  placeholder="请输入市场价" autocomplete="off" class="layui-input" type="text" >
+          <input name="market_price"  placeholder="请输入市场价" value="{$goods.market_price}" autocomplete="off" class="layui-input" type="text" >
         </div>
       </div>
 
@@ -48,7 +48,8 @@
         <button type="button" class="layui-btn" id="thumb">上传封面图</button>
         <div class="layui-upload-list">
           <label class="layui-form-label"></label>
-          <img class="layui-upload-img" id="demo1" width="150" height="150" >
+          <img class="layui-upload-img" src="{$goods.pic}" id="demo1" width="150" height="150" >
+          <input type="hidden" name="pic" id="pic_url" value="{$goods.pic}">
           <p id="demoText"></p>
         </div>
       </div>
@@ -59,15 +60,16 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">商品详情</label>
         <div class="layui-input-block" style="max-width:800px;">
-          <textarea placeholder="请输入内容" class="layui-textarea" name="description" id="container" style="border:0;padding:0"></textarea>
+          <textarea placeholder="请输入内容" class="layui-textarea" name="description" id="container" style="border:0;padding:0">{$goods.description}</textarea>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">状态</label>
         <div class="layui-input-block">
-          <input type="radio" name="status" value="1" title="上架" checked=""><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>上架</div></div>
-          <input type="radio" name="status" value="0" title="下架" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>下架</div></div>
+
+          <input type="radio" name="status" value="1" title="上架"  {if condition="$goods['status'] eq 1"}checked{/if} ><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>上架</div></div>
+          <input type="radio" name="status" value="0" title="下架" {if condition="$goods['status'] eq 0"}checked{/if} ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>下架</div></div>
         </div>
       </div>
       <div class="layui-form-item">
@@ -109,7 +111,7 @@
           //上传完毕回调
           if(res.code == 2) {
             $('#demo1').attr('src',res.src);
-            $('#upload-thumb').append('<input type="hidden" name="pic" value="'+ res.src +'">');
+            $("#pic_url").val(res.src);
           } else {
             layer.msg(res.msg);
           }
@@ -146,7 +148,7 @@
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
-                      url:"{:url('admin/goods/add')}",
+                      url:"{:url('admin/goods/edit')}",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,

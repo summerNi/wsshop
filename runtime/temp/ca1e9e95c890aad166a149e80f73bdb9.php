@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"D:\wamp64\www\pethome\public/../app/admin\view\goods\index.html";i:1542092709;s:53:"D:\wamp64\www\pethome\app\admin\view\public\foot.html";i:1540262433;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:62:"D:\wamp64\www\pethome\public/../app/admin\view\user\index.html";i:1542091555;s:53:"D:\wamp64\www\pethome\app\admin\view\public\foot.html";i:1540262433;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,27 +27,48 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">商品管理</li>
-        <li><a href="<?php echo url('admin/goods/add'); ?>" class="a_menu">新增商品</a></li>
+        <li class="layui-this">用户管理</li>
       </ul>
     </div>
+      <form class="layui-form serch" action="<?php echo url('admin/user/index'); ?>" method="post">
+        <div class="layui-form-item" style="float: left;">
+          <div class="layui-input-inline">
+            <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm">
+          </div>
+          <div class="layui-input-inline">
+            <div class="layui-inline">
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="create_time" placeholder="创建时间" name="create_time">
+              </div>
+            </div>
+          </div>
+          <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" lay-filter="serch">立即提交</button>
+        </div>
+      </form>
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="50">
+        <col width="100">
+        <col width="50">
+        <col width="100">
+        <col width="100">
         <col width="150">
+        <col width="100">
         <col width="150">
-        <col width="200">
-        <col width="200">
+        <col width="50">
+        <col width="50">
         <col width="100">
       </colgroup>
       <thead>
         <tr>
-          <th>编号</th>
-          <th>服务名称</th>
-          <th>副标题</th>
-          <th>封面图</th>
-          <th>价格</th>
-          <th>状态</th>
+          <th>ID</th>
+          <th>微信昵称</th>
+          <th>真实姓名</th>
+          <th>电话</th>
+          <th>账户余额</th>
+          <th>会员等级</th>
+          <th>积分</th>
+          <th>注册时间</th>
           <th>操作</th>
         </tr>
       </thead>
@@ -55,23 +76,19 @@
         <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
           <td><?php echo $vo['id']; ?></td>
-          <td><?php echo $vo['name']; ?></td>
-          <td><?php echo $vo['sub_name']; ?></td>
-          <td><img width="40px" height="40px" src="<?php echo $vo['pic']; ?>"/></td>
-          <td><?php echo $vo['price']; ?></td>
-          <td><?php echo $vo['status']; ?></td>
-          <td class="operation-menu">
-            <div class="layui-btn-group">
-              <a href="<?php echo url('admin/goods/edit',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="<?php echo url('admin/goods/add'); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-            </div>
-          </td>
+          <td><?php echo $vo['wechat_name']; ?></td>
+          <td><?php echo $vo['true_name']; ?></td>
+          <td><?php echo $vo['phone']; ?></td>
+          <td><?php echo $vo['blance']; ?></td>
+          <td><?php echo $vo['member_level']; ?></td>
+          <td><?php echo $vo['score']; ?></td>
+          <td><?php echo $vo['create_time']; ?></td>
+          <td></td>
         </tr>
         <?php endforeach; endif; else: echo "" ;endif; ?>
       </tbody>
     </table>
-
+    <div style="padding:0 20px;"><?php echo $list->render(); ?></div>
         <script src="/static/public/layui/layui.js" charset="utf-8"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
     <script>
@@ -162,7 +179,7 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"<?php echo url('admin/goods/delete'); ?>",
+          url:"<?php echo url('admin/article/delete'); ?>",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);
@@ -176,6 +193,7 @@
       })
     })
     </script>
+
   </div>
 </body>
 </html>

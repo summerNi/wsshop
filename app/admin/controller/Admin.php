@@ -281,9 +281,11 @@ class Admin extends Permissions
         $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
         $model = new \app\admin\model\AdminCate();
         $menuModel = new AdminMenu();
+
         if ($id > 0) {
             //是修改操作
             if ($this->request->isPost()) {
+
                 //是提交操作
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
@@ -295,7 +297,7 @@ class Admin extends Permissions
                     $this->error('提交失败：' . $validate->getError());
                 }
                 //验证用户名是否存在
-                $name = $model->where(['name'=>$post['name'],'id'=>['neq',$post['id']]])->select();
+                $name = $model->where(['name'=>$post['name'],'id'=>['neq',$post['id']]])->select()->toArray();
                 if (!empty($name)) {
                     return $this->error('提交失败：该角色名已存在');
                 }

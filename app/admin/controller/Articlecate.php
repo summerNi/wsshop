@@ -108,7 +108,7 @@ class Articlecate extends Permissions
     			return $this->fetch();
     		}
     	}
-    	
+
     }
 
 
